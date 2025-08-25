@@ -11,8 +11,13 @@ export class ShoppingCart {
     removeItem(index: number): void {
         this._items.splice(index, 1);
     }
+
     get items(): Readonly<CartItem[]> {
         return this._items;
+    }
+
+    get orderStatus(): 'open' | 'closed' {
+        return this._orderStatus;
     }
 
     total(): number {
@@ -35,7 +40,6 @@ export class ShoppingCart {
         return this._items.length === 0;
     }
 
-    this._orderStatus = 'closed';
     sendMessage(msg: string): void {
         console.log('Mensagem enviada:', msg);
     }
