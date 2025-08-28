@@ -1,6 +1,6 @@
-import { EnterpriseCustomerProtocol, IndividualCustomerProtocol } from './interfaces/customer-protocol';
+import { CustomerOrder, EnterpriseCustomerProtocol, IndividualCustomerProtocol } from './interfaces/customer-protocol';
 
-export class IndividualCustomer implements IndividualCustomerProtocol {
+export class IndividualCustomer implements IndividualCustomerProtocol, CustomerOrder {
     firstName: string;
     lastName: string;
     cpf: string;
@@ -11,15 +11,27 @@ export class IndividualCustomer implements IndividualCustomerProtocol {
         this.cpf = cpf;
         this.cnpj = '';
     }
+    getName(): string {
+        return this.firstName + ' ' + this.lastName;
+    }
+    getIDN(): string {
+        return this.cpf;
+    }
     cnpj: string;
 }
 
-export class EnterpriseCustomer implements EnterpriseCustomerProtocol {
+export class EnterpriseCustomer implements EnterpriseCustomerProtocol, CustomerOrder {
     cnpj: string;
     name: string;
 
     constructor(name: string, cnpj: string) {
         this.name = name;
         this.cnpj = cnpj;
+    }
+    getName(): string {
+        return this.name;
+    }
+    getIDN(): string {
+        return this.cnpj;
     }
 }
